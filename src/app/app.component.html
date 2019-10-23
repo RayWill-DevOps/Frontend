@@ -1,0 +1,18 @@
+
+<div class="app-content" >
+
+   
+    <mat-card>
+      <button mat-button [matMenuTriggerFor]="menu">Menu</button>
+      <mat-menu #menu="matMenu">
+        <a routerLink="/codecamps" mat-menu-item>Codecamps</a>
+        <a routerLink="/create" mat-menu-item>Create Codecamp Event</a>
+      </mat-menu>
+  
+    </mat-card>
+  
+    <router-outlet></router-outlet>
+  
+  
+  </div>
+  

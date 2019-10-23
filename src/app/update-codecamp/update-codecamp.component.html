@@ -1,0 +1,83 @@
+
+<h3>Update Codecamp: {{codecamp.name}}</h3>
+<!-- <form class="formwidth" (ngSubmit)="onSubmit()">
+  <div class="example-full-width">
+    <input required  placeholder="Title" id="name" [(ngModel)]="codecamp.name" name="name">
+  </div>
+  <div class="example-full-width">
+    <input required  placeholder="Venue" id="venue" [(ngModel)]="codecamp.venue" name="venue">
+  </div>
+  <div>
+      <input required placeholder="Choose a date" [(ngModel)]="codecamp.eventDate" name="eventDate" >
+    </div>
+  <div class="example-full-width">
+    <input type="number" required  placeholder="Duration" id="duration" [(ngModel)]="codecamp.duration"
+      name="duration">
+  </div>
+  <button>Update Codecamp</button>
+</form> -->
+
+<form class="formwidth" (ngSubmit)="onSubmit()" #myForm="ngForm">
+  <div>
+    <mat-form-field class="example-full-width">
+
+      <input required matInput placeholder="Title" id="name" [(ngModel)]="codecamp.name" name="name">
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field class="example-full-width">
+
+      <input required matInput placeholder="Venue" id="venue" [(ngModel)]="codecamp.venue" name="venue">
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+      <input required matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="codecamp.eventDate"
+        name="eventDate" #ccDate>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field class="example-full-width">
+      <input type="number" required matInput placeholder="Duration" id="duration" [(ngModel)]="codecamp.duration"
+        name="duration">
+    </mat-form-field>
+  </div>
+
+  <div class="talks-div" *ngIf="codecamp.talks!=undefined && codecamp.talks.length>0">
+    <h3>Talks</h3>
+    <ng-container *ngFor="let talk of codecamp.talks">
+      <mat-list-item role="listitem">
+        <mat-list>
+          <mat-list-item>
+            <dl>
+              <dt contenteditable="true" id="talkTitle{{talk.talkId}}">{{talk.title}}</dt>
+              <dd style="font-size: 0.75em;">{{talk.speaker.firstName}} {{talk.speaker.lastName}}
+                <button type="button" mat-flat-button color="warn" style="position:absolute;right:0;top:0;" (click)="deleteTalk(talk.talkId)">Delete Talk</button>
+              </dd>
+            </dl>
+          </mat-list-item>
+        </mat-list>
+      </mat-list-item>
+    </ng-container>
+  </div>
+
+  <h3>Add New Talk to {{codecamp.name}}</h3>
+    <mat-form-field class="example-full-width">
+      <input type="text" matInput placeholder="New Talk Title" id="newTalkTitle" name="newTalkTitle"
+        [(ngModel)]="talk.title">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <mat-select #speakerSelect  id="speakers" name="speakers" [(ngModel)]="speaker.speakerId">
+          <mat-option value="{{speaker.speakerId}}" *ngFor="let speaker of speakers">{{speaker.firstName}} {{speaker.lastName}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <div>
+      <button type="button" mat-flat-button color="accent" (click)="addTalk()">Add Talk to Codecamp</button>
+    </div>
+    <div style="margin-top: 10px;">
+      <button mat-flat-button color="warn" style="margin-bottom: 10px;">Save Changes</button>
+    </div>
+
+</form>
