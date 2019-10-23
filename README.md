@@ -1,2 +1,2 @@
 # Frontend
-Repo for frontend code supporting DevOps course
+Creating am Angular comp and entities ...
